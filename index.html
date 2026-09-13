@@ -286,7 +286,6 @@
     };
 
     function updateUI() {
-      // Actualizar visibilidad de preguntas
       document.querySelectorAll('.question-card').forEach(card => {
         card.classList.remove('active');
         if (parseInt(card.dataset.question) === currentStep) {
@@ -294,11 +293,9 @@
         }
       });
 
-      // Actualizar barra de progreso
       const progressPercent = (currentStep / totalSteps) * 100;
       document.getElementById('progress-bar').style.width = progressPercent + '%';
 
-      // Actualizar botón atrás
       const btnBack = document.getElementById('btn-back');
       if (currentStep === 1) {
         btnBack.disabled = true;
@@ -326,12 +323,10 @@
     }
 
     function showResults() {
-      // Ocultar encabezado y preguntas
       document.getElementById('quiz-header').style.display = 'none';
       document.querySelectorAll('.question-card').forEach(card => card.style.display = 'none');
       document.getElementById('nav-container').style.display = 'none';
 
-      // Calcular la opción más seleccionada
       const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
       answers.forEach(ans => { counts[ans]++; });
 
