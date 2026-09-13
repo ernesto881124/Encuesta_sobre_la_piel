@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test de Tipo de Piel</title>
+  <style>
+    :root {
+      --primary-color: #4a7c59;
+      --primary-hover: #3b6346;
+      --bg-color: #f4f7f5;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --accent-color: #e8f0ec;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      background-color: #e0e0e0;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      display: none;
+    }
+
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background-color: var(--card-bg);
+      border: 2px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .option-btn:hover {
+      background-color: var(--accent-color);
+      border-color: var(--primary-color);
+    }
+
+    .navigation {
+      margin-top: 25px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: #666;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-back:hover {
+      background-color: #eee;
+    }
+
+    .btn-back:disabled {
+      visibility: hidden;
+    }
+
+    #result-card {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .result-title {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .result-body {
+      background-color: var(--accent-color);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .btn-reset {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="quiz-header">
+      <h1>Diagnóstico de Tipo de Piel</h1>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- PREGUNTA 1 -->
+    <div class="question-card active" data-question="1">
+      <div class="question-title">1. ¿Cómo sientes la piel de tu rostro al despertar por la mañana?</div>
+      <div class="options-container">
+        <button class="option-btn" onclick="selectOption('A')">A) Cómoda, ni muy seca ni brillante.</button>
+        <button class="option-btn" onclick="selectOption('B')">B) Tirante, áspera o con sensación de deshidratación.</button>
+        <button class="option-btn" onclick="selectOption('C')">C) Con bastante brillo y capa grasosa en todo el rostro.</button>
+        <button class="option-btn" onclick="selectOption('D')">D) Con brillo únicamente en la zona T y seca en mejillas.</button>
+        <button class="option-btn" onclick="selectOption('E')">E) Con rojeces, picazón o sensación de ardor.</button>
+      </div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div class="question-card" data-question="2">
+      <div class="question-title">2. ¿Cómo lucen tus poros a simple vista?</div>
+      <div class="options-container">
+        <button class="option-btn" onclick="selectOption('A')">A) Finos y casi imperceptibles.</button>
+        <button class="option-btn" onclick="selectOption('B')">B) Muy cerrados e invisibles, pero la piel luce opaca.</button>
+        <button class="option-btn" onclick="selectOption('C')">C) Dilatados y visibles en casi todo el rostro.</button>
+        <button class="option-btn" onclick="selectOption('D')">D) Visibles únicamente en la zona T (nariz y barbilla).</button>
+        <button class="option-btn" onclick="selectOption('E')">E) Normales, pero la piel suele presentar irritación.</button>
+      </div>
+    </div>
+
+    <!-- PREGUNTA 3 -->
+    <div class="question-card" data-question="3">
+      <div class="question-title">3. A mitad del día, ¿qué ocurre con el aspecto de tu rostro?</div>
+      <div class="options-container">
+        <button class="option-btn" onclick="selectOption('A')">A) Se mantiene estable sin cambios drásticos.</button>
+        <button class="option-btn" onclick="selectOption('B')">B) Se descama o se notan parches secos.</button>
+        <button class="option-btn" onclick="selectOption('C')">C) Hay exceso de grasa y mucho brillo visible.</button>
+        <button class="option-btn" onclick="selectOption('D')">D) Brillo en nariz y frente, pero el resto luce seco o normal.</button>
+        <button class="option-btn" onclick="selectOption('E')">E) Reacciona con enrojecimiento o molestias.</button>
+      </div>
+    </div>
+
+    <!-- PREGUNTA 4 -->
+    <div class="question-card" data-question="4">
+      <div class="question-title">4. ¿Cómo reacciona tu piel al probar un producto cosmético nuevo?</div>
+      <div class="options-container">
+        <button class="option-btn" onclick="selectOption('A')">A) Se adapta fácilmente sin inconvenientes.</button>
+        <button class="option-btn" onclick="selectOption('B')">B) Absorbe rápido pero sigue sintiéndose tirante.</button>
+        <button class="option-btn" onclick="selectOption('C')">C) Tiende a generar brotes o mayor oleosidad.</button>
+        <button class="option-btn" onclick="selectOption('D')">D) Tolera bien en unas zonas y mal en otras.</button>
+        <button class="option-btn" onclick="selectOption('E')">E) Reacciona con ardor, picor o enrojecimiento.</button>
+      </div>
+    </div>
+
+    <!-- PREGUNTA 5 -->
+    <div class="question-card" data-question="5">
+      <div class="question-title">5. ¿Cuál es la textura general de tu piel al tacto?</div>
+      <div class="options-container">
+        <button class="option-btn" onclick="selectOption('A')">A) Suave, elástica y uniforme.</button>
+        <button class="option-btn" onclick="selectOption('B')">B) Áspera, rígida o escamada.</button>
+        <button class="option-btn" onclick="selectOption('C')">C) Resbaladiza o aceitosa.</button>
+        <button class="option-btn" onclick="selectOption('D')">D) Irregular: grasa en el centro y seca en los lados.</button>
+        <button class="option-btn" onclick="selectOption('E')">E) Delicada, reactiva y caliente al tacto.</button>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN ATRÁS -->
+    <div class="navigation" id="nav-container">
+      <button class="btn-back" id="btn-back" onclick="prevQuestion()" disabled>← Atrás</button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="result-card">
+      <h2 class="result-title">Resultado de tu Diagnóstico</h2>
+      <div class="result-body" id="result-text"></div>
+      <button class="btn-reset" onclick="resetQuiz()">Volver a realizar el test</button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+    const answers = [];
+
+    const resultsData = {
+      A: {
+        type: "Piel Normal / Equilibrada",
+        desc: "Tu piel posee un excelente equilibrio de agua y grasa. Luce uniforme, suave y tolera bien los cambios ambientales. Mantén una rutina básica de limpieza, hidratación ligera y protector solar."
+      },
+      B: {
+        type: "Piel Seca / Deshidratada",
+        desc: "Tu piel produce menos sebo de lo habitual y tiende a perder humedad rápidamente, lo que causa tirantez o aspereza. Se recomienda utilizar limpiadores suaves e hidratantes ricos en ceramidas o ácido hialurónico."
+      },
+      C: {
+        type: "Piel Grasa",
+        desc: "Tu piel tiene una producción activa de sebo que genera brillo visible y poros más notorios. Es clave la limpieza diaria con geles suaves y el uso de hidratantes ligeros en gel no comedogénicos."
+      },
+      D: {
+        type: "Piel Mixta",
+        desc: "Presentas zonas con mayor oleosidad (frente, nariz y barbilla) y áreas normales o secas en las mejillas. Se sugiere equilibrar el rostro combinando texturas ligeras e hidratación focalizada."
+      },
+      E: {
+        type: "Piel Sensible / Reactiva",
+        desc: "Tu piel reacciona fácilmente a estímulos externos, productos o cambios de clima con enrojecimiento o ardor. Necesitas fórmulas hipoalergénicas, calmantes y libres de fragancias o alcohol."
+      }
+    };
+
+    function updateUI() {
+      // Actualizar visibilidad de preguntas
+      document.querySelectorAll('.question-card').forEach(card => {
+        card.classList.remove('active');
+        if (parseInt(card.dataset.question) === currentStep) {
+          card.classList.add('active');
+        }
+      });
+
+      // Actualizar barra de progreso
+      const progressPercent = (currentStep / totalSteps) * 100;
+      document.getElementById('progress-bar').style.width = progressPercent + '%';
+
+      // Actualizar botón atrás
+      const btnBack = document.getElementById('btn-back');
+      if (currentStep === 1) {
+        btnBack.disabled = true;
+      } else {
+        btnBack.disabled = false;
+      }
+    }
+
+    function selectOption(optionKey) {
+      answers[currentStep - 1] = optionKey;
+
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateUI();
+      } else {
+        showResults();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateUI();
+      }
+    }
+
+    function showResults() {
+      // Ocultar encabezado y preguntas
+      document.getElementById('quiz-header').style.display = 'none';
+      document.querySelectorAll('.question-card').forEach(card => card.style.display = 'none');
+      document.getElementById('nav-container').style.display = 'none';
+
+      // Calcular la opción más seleccionada
+      const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+      answers.forEach(ans => { counts[ans]++; });
+
+      let topOption = 'A';
+      let maxCount = -1;
+      for (const key in counts) {
+        if (counts[key] > maxCount) {
+          maxCount = counts[key];
+          topOption = key;
+        }
+      }
+
+      const result = resultsData[topOption];
+      document.getElementById('result-text').innerHTML = `<strong>${result.type}</strong><br><br>${result.desc}`;
+      document.getElementById('result-card').style.display = 'block';
+    }
+
+    function resetQuiz() {
+      currentStep = 1;
+      answers.length = 0;
+      
+      document.getElementById('quiz-header').style.display = 'block';
+      document.getElementById('nav-container').style.display = 'flex';
+      document.getElementById('result-card').style.display = 'none';
+      
+      updateUI();
+    }
+  </script>
+</body>
+</html>
