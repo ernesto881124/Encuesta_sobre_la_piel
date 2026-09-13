@@ -109,6 +109,12 @@
       border-color: var(--primary-color);
     }
 
+    .option-btn.selected {
+      background-color: var(--accent-color);
+      border-color: var(--primary-color);
+      font-weight: bold;
+    }
+
     .navigation {
       margin-top: 25px;
       display: flex;
@@ -155,6 +161,21 @@
       border-radius: 8px;
       margin-bottom: 20px;
       line-height: 1.5;
+      text-align: left;
+    }
+
+    .breakdown-list {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #ccc;
+      list-style: none;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
     }
 
     .btn-reset {
@@ -188,11 +209,11 @@
     <div class="question-card active" data-question="1">
       <div class="question-title">1. ¿Cómo sientes la piel de tu rostro al despertar por la mañana?</div>
       <div class="options-container">
-        <button class="option-btn" onclick="selectOption('A')">A) Cómoda, ni muy seca ni brillante.</button>
-        <button class="option-btn" onclick="selectOption('B')">B) Tirante, áspera o con sensación de deshidratación.</button>
-        <button class="option-btn" onclick="selectOption('C')">C) Con bastante brillo y capa grasosa en todo el rostro.</button>
-        <button class="option-btn" onclick="selectOption('D')">D) Con brillo únicamente en la zona T y seca en mejillas.</button>
-        <button class="option-btn" onclick="selectOption('E')">E) Con rojeces, picazón o sensación de ardor.</button>
+        <button class="option-btn" data-key="A" onclick="selectOption('A')">A) Cómoda, ni muy seca ni brillante.</button>
+        <button class="option-btn" data-key="B" onclick="selectOption('B')">B) Tirante, áspera o con sensación de deshidratación.</button>
+        <button class="option-btn" data-key="C" onclick="selectOption('C')">C) Con bastante brillo y capa grasosa en todo el rostro.</button>
+        <button class="option-btn" data-key="D" onclick="selectOption('D')">D) Con brillo únicamente en la zona T y seca en mejillas.</button>
+        <button class="option-btn" data-key="E" onclick="selectOption('E')">E) Con rojeces, picazón o sensación de ardor.</button>
       </div>
     </div>
 
@@ -200,11 +221,11 @@
     <div class="question-card" data-question="2">
       <div class="question-title">2. ¿Cómo lucen tus poros a simple vista?</div>
       <div class="options-container">
-        <button class="option-btn" onclick="selectOption('A')">A) Finos y casi imperceptibles.</button>
-        <button class="option-btn" onclick="selectOption('B')">B) Muy cerrados e invisibles, pero la piel luce opaca.</button>
-        <button class="option-btn" onclick="selectOption('C')">C) Dilatados y visibles en casi todo el rostro.</button>
-        <button class="option-btn" onclick="selectOption('D')">D) Visibles únicamente en la zona T (nariz y barbilla).</button>
-        <button class="option-btn" onclick="selectOption('E')">E) Normales, pero la piel suele presentar irritación.</button>
+        <button class="option-btn" data-key="A" onclick="selectOption('A')">A) Finos y casi imperceptibles.</button>
+        <button class="option-btn" data-key="B" onclick="selectOption('B')">B) Muy cerrados e invisibles, pero la piel luce opaca.</button>
+        <button class="option-btn" data-key="C" onclick="selectOption('C')">C) Dilatados y visibles en casi todo el rostro.</button>
+        <button class="option-btn" data-key="D" onclick="selectOption('D')">D) Visibles únicamente en la zona T (nariz y barbilla).</button>
+        <button class="option-btn" data-key="E" onclick="selectOption('E')">E) Normales, pero la piel suele presentar irritación.</button>
       </div>
     </div>
 
@@ -212,11 +233,11 @@
     <div class="question-card" data-question="3">
       <div class="question-title">3. A mitad del día, ¿qué ocurre con el aspecto de tu rostro?</div>
       <div class="options-container">
-        <button class="option-btn" onclick="selectOption('A')">A) Se mantiene estable sin cambios drásticos.</button>
-        <button class="option-btn" onclick="selectOption('B')">B) Se descama o se notan parches secos.</button>
-        <button class="option-btn" onclick="selectOption('C')">C) Hay exceso de grasa y mucho brillo visible.</button>
-        <button class="option-btn" onclick="selectOption('D')">D) Brillo en nariz y frente, pero el resto luce seco o normal.</button>
-        <button class="option-btn" onclick="selectOption('E')">E) Reacciona con enrojecimiento o molestias.</button>
+        <button class="option-btn" data-key="A" onclick="selectOption('A')">A) Se mantiene estable sin cambios drásticos.</button>
+        <button class="option-btn" data-key="B" onclick="selectOption('B')">B) Se descama o se notan parches secos.</button>
+        <button class="option-btn" data-key="C" onclick="selectOption('C')">C) Hay exceso de grasa y mucho brillo visible.</button>
+        <button class="option-btn" data-key="D" onclick="selectOption('D')">D) Brillo en nariz y frente, pero el resto luce seco o normal.</button>
+        <button class="option-btn" data-key="E" onclick="selectOption('E')">E) Reacciona con enrojecimiento o molestias.</button>
       </div>
     </div>
 
@@ -224,11 +245,11 @@
     <div class="question-card" data-question="4">
       <div class="question-title">4. ¿Cómo reacciona tu piel al probar un producto cosmético nuevo?</div>
       <div class="options-container">
-        <button class="option-btn" onclick="selectOption('A')">A) Se adapta fácilmente sin inconvenientes.</button>
-        <button class="option-btn" onclick="selectOption('B')">B) Absorbe rápido pero sigue sintiéndose tirante.</button>
-        <button class="option-btn" onclick="selectOption('C')">C) Tiende a generar brotes o mayor oleosidad.</button>
-        <button class="option-btn" onclick="selectOption('D')">D) Tolera bien en unas zonas y mal en otras.</button>
-        <button class="option-btn" onclick="selectOption('E')">E) Reacciona con ardor, picor o enrojecimiento.</button>
+        <button class="option-btn" data-key="A" onclick="selectOption('A')">A) Se adapta fácilmente sin inconvenientes.</button>
+        <button class="option-btn" data-key="B" onclick="selectOption('B')">B) Absorbe rápido pero sigue sintiéndose tirante.</button>
+        <button class="option-btn" data-key="C" onclick="selectOption('C')">C) Tiende a generar brotes o mayor oleosidad.</button>
+        <button class="option-btn" data-key="D" onclick="selectOption('D')">D) Tolera bien en unas zonas y mal en otras.</button>
+        <button class="option-btn" data-key="E" onclick="selectOption('E')">E) Reacciona con ardor, picor o enrojecimiento.</button>
       </div>
     </div>
 
@@ -236,11 +257,11 @@
     <div class="question-card" data-question="5">
       <div class="question-title">5. ¿Cuál es la textura general de tu piel al tacto?</div>
       <div class="options-container">
-        <button class="option-btn" onclick="selectOption('A')">A) Suave, elástica y uniforme.</button>
-        <button class="option-btn" onclick="selectOption('B')">B) Áspera, rígida o escamada.</button>
-        <button class="option-btn" onclick="selectOption('C')">C) Resbaladiza o aceitosa.</button>
-        <button class="option-btn" onclick="selectOption('D')">D) Irregular: grasa en el centro y seca en los lados.</button>
-        <button class="option-btn" onclick="selectOption('E')">E) Delicada, reactiva y caliente al tacto.</button>
+        <button class="option-btn" data-key="A" onclick="selectOption('A')">A) Suave, elástica y uniforme.</button>
+        <button class="option-btn" data-key="B" onclick="selectOption('B')">B) Áspera, rígida o escamada.</button>
+        <button class="option-btn" data-key="C" onclick="selectOption('C')">C) Resbaladiza o aceitosa.</button>
+        <button class="option-btn" data-key="D" onclick="selectOption('D')">D) Irregular: grasa en el centro y seca en los lados.</button>
+        <button class="option-btn" data-key="E" onclick="selectOption('E')">E) Delicada, reactiva y caliente al tacto.</button>
       </div>
     </div>
 
@@ -260,36 +281,47 @@
   <script>
     let currentStep = 1;
     const totalSteps = 5;
-    const answers = [];
+    let answers = [];
 
     const resultsData = {
       A: {
         type: "Piel Normal / Equilibrada",
-        desc: "Tu piel posee un excelente equilibrio de agua y grasa. Luce uniforme, suave y tolera bien los cambios ambientales. Mantén una rutina básica de limpieza, hidratación ligera y protector solar."
+        desc: "Tu piel posee un excelente equilibrio de agua y grasa. Luce uniforme, suave y tolera bien los cambios ambientales."
       },
       B: {
         type: "Piel Seca / Deshidratada",
-        desc: "Tu piel produce menos sebo de lo habitual y tiende a perder humedad rápidamente, lo que causa tirantez o aspereza. Se recomienda utilizar limpiadores suaves e hidratantes ricos en ceramidas o ácido hialurónico."
+        desc: "Tu piel produce menos sebo de lo habitual y tiende a perder humedad rápidamente, lo que causa tirantez o aspereza."
       },
       C: {
         type: "Piel Grasa",
-        desc: "Tu piel tiene una producción activa de sebo que genera brillo visible y poros más notorios. Es clave la limpieza diaria con geles suaves y el uso de hidratantes ligeros en gel no comedogénicos."
+        desc: "Tu piel tiene una producción activa de sebo que genera brillo visible y poros más notorios."
       },
       D: {
         type: "Piel Mixta",
-        desc: "Presentas zonas con mayor oleosidad (frente, nariz y barbilla) y áreas normales o secas en las mejillas. Se sugiere equilibrar el rostro combinando texturas ligeras e hidratación focalizada."
+        desc: "Presentas zonas con mayor oleosidad (frente, nariz y barbilla) y áreas normales o secas en las mejillas."
       },
       E: {
         type: "Piel Sensible / Reactiva",
-        desc: "Tu piel reacciona fácilmente a estímulos externos, productos o cambios de clima con enrojecimiento o ardor. Necesitas fórmulas hipoalergénicas, calmantes y libres de fragancias o alcohol."
+        desc: "Tu piel reacciona fácilmente a estímulos externos, productos o cambios de clima con enrojecimiento o ardor."
       }
     };
 
     function updateUI() {
       document.querySelectorAll('.question-card').forEach(card => {
         card.classList.remove('active');
-        if (parseInt(card.dataset.question) === currentStep) {
+        const cardStep = parseInt(card.dataset.question);
+
+        if (cardStep === currentStep) {
           card.classList.add('active');
+
+          const savedAnswer = answers[currentStep - 1];
+          card.querySelectorAll('.option-btn').forEach(btn => {
+            if (savedAnswer && btn.dataset.key === savedAnswer) {
+              btn.classList.add('selected');
+            } else {
+              btn.classList.remove('selected');
+            }
+          });
         }
       });
 
@@ -297,11 +329,7 @@
       document.getElementById('progress-bar').style.width = progressPercent + '%';
 
       const btnBack = document.getElementById('btn-back');
-      if (currentStep === 1) {
-        btnBack.disabled = true;
-      } else {
-        btnBack.disabled = false;
-      }
+      btnBack.disabled = (currentStep === 1);
     }
 
     function selectOption(optionKey) {
@@ -328,7 +356,7 @@
       document.getElementById('nav-container').style.display = 'none';
 
       const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
-      answers.forEach(ans => { counts[ans]++; });
+      answers.forEach(ans => { if(ans) counts[ans]++; });
 
       let topOption = 'A';
       let maxCount = -1;
@@ -340,13 +368,27 @@
       }
 
       const result = resultsData[topOption];
-      document.getElementById('result-text').innerHTML = `<strong>${result.type}</strong><br><br>${result.desc}`;
+      
+      let breakdownHtml = `<ul class="breakdown-list"><strong>Desglose de respuestas:</strong><br><br>`;
+      for (const key in counts) {
+        const percentage = (counts[key] / totalSteps) * 100;
+        breakdownHtml += `<li class="breakdown-item"><span>${resultsData[key].type}:</span> <strong>${percentage}%</strong></li>`;
+      }
+      breakdownHtml += `</ul>`;
+
+      document.getElementById('result-text').innerHTML = `
+        <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 10px;">${result.type}</h3>
+        <p>${result.desc}</p>
+        ${breakdownHtml}
+      `;
       document.getElementById('result-card').style.display = 'block';
     }
 
     function resetQuiz() {
       currentStep = 1;
-      answers.length = 0;
+      answers = [];
+      
+      document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
       
       document.getElementById('quiz-header').style.display = 'block';
       document.getElementById('nav-container').style.display = 'flex';
